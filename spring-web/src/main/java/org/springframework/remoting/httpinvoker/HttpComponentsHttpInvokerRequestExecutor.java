@@ -24,7 +24,6 @@ import java.util.zip.GZIPInputStream;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
-import org.apache.http.NoHttpResponseException;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -325,7 +324,7 @@ public class HttpComponentsHttpInvokerRequestExecutor extends AbstractHttpInvoke
 
 		StatusLine status = response.getStatusLine();
 		if (status.getStatusCode() >= 300) {
-			throw new NoHttpResponseException(
+			throw new IOException(
 					"Did not receive successful HTTP response: status code = " + status.getStatusCode() +
 					", status message = [" + status.getReasonPhrase() + "]");
 		}
